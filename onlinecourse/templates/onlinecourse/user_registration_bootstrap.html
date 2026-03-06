@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'onlinecourse/css/style.css' %}">
 </head>
+
 <body>
 
     <!-- Navigation bar -->
@@ -24,8 +27,8 @@
                     <form class="form-inline" action="{% url 'onlinecourse:login' %}" method="post">
                         {% csrf_token %}
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Username" name="username" >
-                            <input type="password" class="form-control" placeholder="Username" name="psw" >
+                            <input type="text" class="form-control" placeholder="Username" name="username">
+                            <input type="password" class="form-control" placeholder="Username" name="psw">
                             <button class="btn btn-primary" type="submit">Login</button>
                             <a class="btn btn-link" href="{% url 'onlinecourse:registration' %}">Sign Up</a>
                         </div>
@@ -37,28 +40,39 @@
     </nav>
 
     <!-- Stylize Registration form -->
-    <form action="{% url 'onlinecourse:registration' %}" method="post">
-        <div class="container"> <!--Style root div with .container class -->
-            {% csrf_token %}
-            <h1>Sign Up</h1>
-            <hr>
-            <div class="form-group"> <!--Style second div with .form-group class -->
-                <label for="username"><b>User Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter User Name: " name="username" required> <!--Style input with .form-control class -->
-                <label for="firstname"><b>First Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname" required> <!--Style input with .form-control class -->
-                <label for="lastname"><b>Last Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname" required> <!--Style input with .form-control class -->
-                <label for="psw"><b>Password</b></label>
-                <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required> <!--Style input with .form-control class -->
-                {% if message %}
-                <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
-                    {{ message }}
+    <div class="row justify-content-center mt-5 mb-5 align-items-center" style="min-height: 70vh;">
+        <div class="col-md-8 col-lg-6">
+            <form action="{% url 'onlinecourse:registration' %}" method="post">
+                {% csrf_token %}
+                <div class="glass-panel mx-auto p-5"> <!--Style root div with .container class -->
+                    <h1 class="text-center mb-4 text-primary font-weight-bold">Join Us Today</h1>
+                    <div class="form-group"> <!--Style second div with .form-group class -->
+                        <label for="username"><b>User Name</b></label>
+                        <input type="text" class="form-control" placeholder="Enter User Name: " name="username"
+                            required> <!--Style input with .form-control class -->
+                        <label for="firstname"><b>First Name</b></label>
+                        <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname"
+                            required> <!--Style input with .form-control class -->
+                        <label for="lastname"><b>Last Name</b></label>
+                        <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname"
+                            required> <!--Style input with .form-control class -->
+                        <label for="psw" class="mt-2"><b>Password</b></label>
+                        <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required>
+                        <!--Style input with .form-control class -->
+
+                        {% if message %}
+                        <div class="alert alert-danger mt-3 mb-3 text-center">
+                            <!--Style the message paragraph with .alert and .alert-warning class -->
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                        <button class="btn btn-primary btn-block py-2 mt-4" type="submit"
+                            style="font-size: 1.1rem; font-weight: 600;">Sign up</button>
+                        <!--Style button with .btn and .btn-primary class -->
+                    </div>
                 </div>
-                {% endif %}
-                <button class="btn btn-primary" type="submit">Sign up</button> <!--Style button with .btn and .btn-primary class -->
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 
 </body>
